@@ -1,0 +1,49 @@
+<form autocomplete="off" novalidate #form="ngForm" (submit)="onSubmit(form)">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Primeiro Nome:</mat-label>
+        <input matInput type="text" placeholder="Ex.: José" name="nome" #nome="ngModel" [(ngModel)]="_usuarioService.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Sobrenome:</mat-label>
+        <input matInput type="text" placeholder="Ex.: Silva Santos" name="sobrenome" #sobrenome="ngModel" [(ngModel)]="_usuarioService.formData.sobrenome" required [class.invalid]="sobrenome.invalid && sobrenome.touched">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Escolaridade:</mat-label>
+      <mat-select aria-label="Default select example" name="escolaridade" #escolaridade="ngModel" [(ngModel)]="_usuarioService.formData.escolaridade" required [class.invalid]="escolaridade.invalid && escolaridade.touched">
+        <mat-option selected>Selecione o grau de escolaridade</mat-option>
+        <mat-option value="Infantil">Infantil</mat-option>
+        <mat-option value="Fundamental">Fundamental</mat-option>
+        <mat-option value="Médio">Médio</mat-option>
+        <mat-option value="Superior">Superior</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input matInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Ex.: jose@email.com" name="email" #email="ngModel" [(ngModel)]="_usuarioService.formData.email" required [class.invalid]="email.invalid && email.touched">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Data de Nasc.:</mat-label>
+      <input matInput [matDatepicker]="datepicker" type="text" [max]="hoje" placeholder="Ex.: 31/12/2020" name="dataNascimento" #dataNascimento="ngModel" [(ngModel)]="_usuarioService.formData.dataNascimento" required [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Enviar</button>
+
+</form>

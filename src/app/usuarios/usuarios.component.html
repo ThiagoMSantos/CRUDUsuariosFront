@@ -1,0 +1,34 @@
+<div>
+  <h1 class="display-4 text-center">Registro de Usuário</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <app-usuarios-form></app-usuarios-form>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Nome</th>
+          <th>Data Nasc.</th>
+          <th>Escolaridade</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of _usuarioService.listaUsuarios">
+          <td (click)="populaFormulario(usuario)">{{usuario.nome}}</td>
+          <td (click)="populaFormulario(usuario)">{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+          <td (click)="populaFormulario(usuario)">{{usuario.escolaridade}}</td>
+          <td (click)="populaFormulario(usuario)">{{usuario.email}}</td>
+          <td>
+            <i class="fas fa-trash" (click)="deletarUsuario(usuario.email)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
